@@ -27,19 +27,44 @@ print(x//y)
 print(" ")
 a=5
 print(a)
-print(a+=3)
-print(a-=3)
-print(a*=3)
-print(a/=3)
-print(a%=3)
-print(a//=3)
-print(a**3)
-print(a&=3)
-print(a|=3)
-print(a^=3)
-print(a>>=3)
-print(a<<=3)
 
+a+=3
+print(a)
+
+a-=3
+print(a)
+
+a*=3
+print(a)
+
+a/=3
+print(a)
+
+a%=3
+print(a)
+
+a//=3
+print(a)
+
+a**3
+print(a)
+
+a=5
+
+a&=3
+print(a)
+
+a|=3
+print(a)
+
+a^=3
+print(a)
+
+a>>=3
+print(a)
+
+a<<=3
+print(a)
 
 
 print(" ")
