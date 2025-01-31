@@ -107,4 +107,22 @@ def cat(category):
     return " "
 print(cat("Romance"))
 
+#4 function that takes a list of movies and computes the average IMDB score.
+def middle(rangg):
+    a=0
+    for i in range(0,rangg+1):
+        a+=movies[i]["imdb"]
+    return round(a/rangg,2)
+print(middle(10))
 
+#5 function that takes a category and computes the average IMDB score.
+def val(category):
+    a=0
+    count=0
+    for i in range(0,15):
+        if (movies[i]["category"]==category): 
+            a+=movies[i]["imdb"]
+            count+=1
+    return round(a/count,2)
+
+print(val("Romance"))
