@@ -19,3 +19,23 @@ def solve(numheads, numlegs):
     chick=numheads-rab #куриц
     return (int(rab), int(chick))
 print(solve(35,94))
+
+#4 function filter_prime which will take list of numbers as an agrument and returns only prime numbers from the list.
+def primes(liss):
+    new_liss=[]
+    for i in range (0,len(liss)):
+        is_prime=True
+        for j in range (2,int(liss[i] ** 0.5) + 1):
+            if liss[i]<2:
+                is_prime=False
+                break
+            if liss[i] % j == 0:
+                is_prime=False
+                break
+        if is_prime:
+            new_liss.append(liss[i])
+    return(new_liss)
+
+mylist=[1, 2, 3, 4, 5, 6, 7, 8, 9, 31]
+print(primes(mylist))
+
