@@ -115,6 +115,18 @@ def middle(rangg):
     return round(a/rangg,2)
 print(middle(10))
 
+#4 function that takes a list of movies and computes the average IMDB score. version 2
+def mid(mov):
+    a=0
+    for i in range (0,len(mov)):
+        for j in range (0,15):
+            if mov[i]==movies[j]["name"]:
+                a+=movies[j]["imdb"]
+    return round(a/len(mov),2)
+
+mov=["Hitman","The Help"]
+print(mid(mov))
+
 #5 function that takes a category and computes the average IMDB score.
 def val(category):
     a=0
