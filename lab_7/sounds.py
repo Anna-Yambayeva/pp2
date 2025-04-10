@@ -1,40 +1,49 @@
 import pygame
-import os
+import os # для работы с путями файлов
 
 pygame.init()
 
+# создаем окно
 screen = pygame.display.set_mode((800, 600))
 
 running = True
 
+# запускаем время (фпс=60)
 clock = pygame.time.Clock()
 
+# получаем доступ к файлами
 songs = [
-    "Miyagi_JEndshpil_Mav-d_-_Aphrodisiac_78725692.mp3",
-    "MiyaGi_Andy_Panda_-_Tantra_70276518.mp3",
-    "Twenty_One_Pilots_-_Stressed_Out_47828699.mp3"
+    "Mark Ronson,Bruno Mars - Uptown Funk.mp3",
+    "ACDC - Highway to Hell.mp3",
+    "The Neighbourhood - Sweater Weather.mp3"
 ]
 
 current_song_index = 0
 
+# создаем функцию для запуска музыки
 def play_song(index):
     pygame.mixer.music.load(songs[index])
     pygame.mixer.music.play()
 
+# создаем функцию для остановки музыки
 def stop_music():
     pygame.mixer.music.stop()
 
+# создаем функцию для переключения на следующую песню
 def next_song():
     global current_song_index
     current_song_index = (current_song_index + 1) % len(songs)
     play_song(current_song_index)
 
+# создаем функцию для переключения на предыдущую песню
 def previous_song():
     global current_song_index
     current_song_index = (current_song_index - 1) % len(songs)
     play_song(current_song_index)
 
+
 while running:
+    # устанавливаем кнопки для управления
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -48,6 +57,7 @@ while running:
             if event.key == pygame.K_b:
                 previous_song()
         
+    # заливаем экран
     screen.fill("white")
 
     pygame.display.flip()
