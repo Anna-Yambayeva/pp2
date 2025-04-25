@@ -22,6 +22,7 @@ SCREEN_HEIGHT = 600
 SPEED = 5
 SCORE = 0
 COIN_SCORE = 0
+health=3
  
 # Шрифт 
 font = pygame.font.SysFont("Verdana", 60)
@@ -121,7 +122,7 @@ all_sprites.add(С2)
  
 
 while True:
-       
+    
     # Обрабатываем события
     for event in pygame.event.get():    
         if event.type == QUIT: # если нажали на крестик
@@ -140,21 +141,26 @@ while True:
     for entity in all_sprites:
         DISPLAYSURF.blit(entity.image, entity.rect)
         entity.move()
- 
+    
     # Проверяем столкновение игрока с врагом
     if pygame.sprite.spritecollideany(P1, enemies):
           pygame.mixer.Sound('imgs/crash.wav').play()
-          time.sleep(0.5) # задержка на 0.5 секунды
+          health-=1
+          E1.rect.top = 0
+          E1.rect.center = (random.randint(40, SCREEN_WIDTH - 40), 0)
+          if health==0:
+            time.sleep(0.5) # задержка на 0.5 секунды
                     
-          DISPLAYSURF.fill(RED) # заливаем экран красным цветом
-          DISPLAYSURF.blit(game_over, (30,250)) # отображаем текст "Game Over"
+            DISPLAYSURF.fill(RED) # заливаем экран красным цветом
+            DISPLAYSURF.blit(game_over, (30,250)) # отображаем текст "Game Over"
            
-          pygame.display.update() # обновляем экран
-          for entity in all_sprites: 
-                entity.kill() 
-          time.sleep(2)
-          pygame.quit()
-          sys.exit() 
+            pygame.display.update() # обновляем экран
+            for entity in all_sprites: 
+                  entity.kill() 
+            time.sleep(2)
+            pygame.quit()
+            sys.exit() 
+          
 
     # Проверяем столкновение игрока с монетами
     coins_collided = pygame.sprite.spritecollide(P1, coins, True)
