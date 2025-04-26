@@ -7,7 +7,8 @@ from config import load_config
 def create_tables_and_procedures():
     """Создаем таблицы и хранимые процедуры"""
     commands = [
-
+        # Удаляем старые таблицы если существуют
+        "DROP TABLE IF EXISTS phonebook_new;",
         # Создаем новую таблицу phonebook_new
         """
         CREATE TABLE phonebook_new (
@@ -68,7 +69,7 @@ def create_tables_and_procedures():
             FOR user_record IN SELECT * FROM jsonb_array_elements(users_data)
             LOOP
                 IF (user_record->>'phone_number') ~ phone_pattern THEN
-                    CALL insert_update_user(
+                    CALL public.insert_update_user(
                         user_record->>'first_name',
                         user_record->>'last_name',
                         user_record->>'phone_number'
